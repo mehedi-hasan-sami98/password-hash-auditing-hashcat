@@ -1,6 +1,6 @@
 # Hashcat Reference Cheat Sheet
 
-Quick reference used during this lab for hash modes and attack modes.
+Quick reference for hash modes and attack modes used throughout this repository.
 
 ## Common Hash Modes (`-m`)
 
@@ -49,7 +49,7 @@ hashcat --help | grep -A 400 "Hash modes"
 
 **Example:** `?u?l?l?l?d?d?d?d` → 1 uppercase + 3 lowercase + 4 digits (e.g. `Pass1234`)
 
-## Useful Flags Used in This Lab
+## Useful Flags
 
 | Flag | Purpose |
 |---|---|

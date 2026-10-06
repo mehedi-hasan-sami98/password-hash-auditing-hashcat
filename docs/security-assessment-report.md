@@ -1,15 +1,15 @@
-# Password Security Assessment Report (Step 10)
+# Password Security Assessment Report
 
-**Lab Reference:** Specification Sheet 05 — Password Hash Auditing Using Hashcat
+**Subject:** Password Hash Auditing Using Hashcat
 **Date:** October 6, 2026
 **Tool Used:** Hashcat v7.1.2 (Kali Linux)
-**Scope:** One authorized sample MD5 password hash, audited under controlled lab conditions.
+**Scope:** One authorized sample MD5 password hash, audited under controlled conditions.
 
 ---
 
 ## 1. Executive Summary
 
-A password hash audit was conducted against an authorized sample hash (`5f4dcc3b5aa765d61d8327deb882cf99`, MD5) using Hashcat, applying both a dictionary-based attack (approved `rockyou.txt` wordlist) and a mask-based brute-force attack. **The hash was cracked in both cases in under two seconds**, recovering the plaintext password `password`. This result highlights severe weaknesses in both the password itself and the hashing algorithm used to store it, and is representative of risks commonly found in unmanaged or legacy credential stores.
+A password hash audit was conducted against an authorized sample hash (`5f4dcc3b5aa765d61d8327deb882cf99`, MD5) using Hashcat, applying both a dictionary-based attack (`rockyou.txt` wordlist) and a mask-based brute-force attack. **The hash was cracked in both cases in under two seconds**, recovering the plaintext password `password`. This result highlights severe weaknesses in both the password itself and the hashing algorithm used to store it, and is representative of risks commonly found in unmanaged or legacy credential stores.
 
 ## 2. Methodology
 
@@ -18,13 +18,13 @@ A password hash audit was conducted against an authorized sample hash (`5f4dcc3b
 | 1 | Verified Hashcat installation (v7.1.2) |
 | 2 | Identified hash as MD5 (32-char hex digest) via `hashid`, mapped to Hashcat mode `-m 0` |
 | 3 | Prepared and verified the hash file |
-| 4 | Confirmed the approved wordlist (`rockyou.txt`, ~14.3M entries) was available |
+| 4 | Confirmed the wordlist (`rockyou.txt`, ~14.3M entries) was available |
 | 5 | Ran dictionary attack (`-a 0`) |
 | 6 | Ran mask/brute-force attack (`-a 3`, `?l?l?l?l?l?l?l?l`) |
 | 7 | Verified recovered password via `--show` |
 | 8 | Recorded hash rate, progress, recovery status, and execution time for each attack |
 
-Full command-by-command detail is available in [`commands-log.md`](commands-log.md); raw results and analysis in [`findings.md`](findings.md).
+Full command-by-command detail is available in [`commands-log.md`](commands-log.md); raw results and analysis in [`findings.md`](findings.md). General process in [`methodology.md`](methodology.md).
 
 ## 3. Results
 
@@ -60,8 +60,8 @@ Full command-by-command detail is available in [`commands-log.md`](commands-log.
 5. **Mandate Multi-Factor Authentication (MFA)** for all accounts, especially privileged ones — this is the single most effective mitigation even if a password is eventually compromised.
 
 ### C. Organizational / Process
-1. **Conduct regular authorized password audits** (as performed in this lab) against internal credential stores to proactively identify weak passwords before attackers do.
-2. **Maintain an approved, access-controlled wordlist and tooling policy** — audits should only run against hashes the auditor is explicitly authorized to test, under documented scope (as reflected in this lab's spec sheet).
+1. **Conduct regular authorized password audits** (as performed here) against internal credential stores to proactively identify weak passwords before attackers do.
+2. **Maintain an approved, access-controlled wordlist and tooling policy** — audits should only run against hashes the auditor is explicitly authorized to test, under documented scope.
 3. **Educate users** on password manager adoption to make long, unique, random passwords practical for every account.
 
 ## 6. Conclusion
